@@ -12,6 +12,7 @@ load_dotenv(find_dotenv())
 @app.route("/getinfo", methods=["POST"])
 def get_info():
     data = request.get_json()
+    option = data["option"]
     college = data["college"]
     grade = data["grade"]
     board = data["board"]
@@ -21,11 +22,12 @@ def get_info():
 
     decoded = jwt.decode(access_token, os.getenv("JWT_SECRET"), algorithms="HS256")
     Users.update_one({"email": decoded["email"][1:len(decoded["email"]) - 1]}, {"$set": {
-        "college": college,
+        "college": college.lower(),
         "grade": grade,
         "board": board,
         "rollno": rollno,
-        "profile_status": status
+        "profile_status": status,
+        "designation" : option
     }})
 
     return jsonify({"success": True})

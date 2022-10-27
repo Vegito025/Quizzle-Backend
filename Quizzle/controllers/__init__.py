@@ -2,4 +2,4 @@ from flask import Flask
 
 app = Flask(__name__)
 
-from controllers.auth import welcome, register, login, getdetail, getinfo
+from controllers.auth import welcome, register, login, getdetail, getinfo, setTutor

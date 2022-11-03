@@ -41,7 +41,8 @@ def register():
                 "password": str(ran),
                 "profile_pic": profile_pic,
                 "profile_status": profile_status,
-                "tutorial" : False
+                "tutorial" : False,
+                "personal_pin": None
             })
             result = Users.find_one({"email": email})
             access_token = jwt.encode({"email": json.dumps(result["email"], default=str)}, "LondonBridgeIsFallingDown",
@@ -60,7 +61,8 @@ def register():
                 "type": "manual",
                 "profile_status": profile_status,
                 "profile_pic": None,
-                "tutorial": False
+                "tutorial": False,
+                "personal_pin": None
             })
             result = Users.find_one({"email": email})
             access_token = jwt.encode({"email": json.dumps(result["email"], default=str)}, "LondonBridgeIsFallingDown",
